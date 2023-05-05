@@ -9,8 +9,8 @@
 </head>
 <body>
     <div class="container p-0">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary border border-info border-warning border-2 rounded" style="background-color: #b20b38">
-            <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary border border-info border-warning border-2 rounded" style="background-color: #0074D9">
+        <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; justify-content: space-between;">
                     <div>
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">

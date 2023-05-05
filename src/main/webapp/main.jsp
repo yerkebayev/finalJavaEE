@@ -10,10 +10,9 @@
     <div class="container mt-3">
         <div class="row mt-3">
             <div class="col-12">
-                <%if (currentUser != null && currentUser.getRole_id().equals(1)) {%>
-                    <button type="button" class="btn btn-sm bg-warning text-bg-secondary" data-bs-toggle="modal" data-bs-target="#addTask" style="background-color: darkblue">Add news
-                    </button>
-                    <form action="/add-news" method="post">
+                <%if (currentUser != null && currentUser.getRole_id() == 1) {%>
+                <button type="button" class="btn btn-sm bg-warning text-bg-secondary" data-bs-toggle="modal" data-bs-target="#addTask" style="background-color: blue">Add news</button>
+                <form action="/add-news" method="post">
                         <div class="modal fade" id="addTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">

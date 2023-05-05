@@ -2,7 +2,39 @@
 <html>
 <head>
     <title>Title</title>
+    <style>
+        body {
+            background-color: #0f1e3c;
+            color: #fff;
+        }
+        .btn-warning {
+            background-color: #1f4e78;
+            border-color: #1f4e78;
+        }
+        .btn-warning:hover {
+            background-color: #3e76a3;
+            border-color: #3e76a3;
+        }
+        .form-control {
+            background-color: #1f4e78;
+            color: #fff;
+            border-color: #1f4e78;
+        }
+        .form-control:focus {
+            background-color: #3e76a3;
+            color: #fff;
+            border-color: #3e76a3;
+            box-shadow: none;
+        }
+        .form-control-plaintext {
+            color: #fff;
+        }
+        .border-warning {
+            border-color: #1f4e78 !important;
+        }
+    </style>
 </head>
+
 <body>
 <%@ include file="navbar.jsp" %>
 <div class="container mt-3">

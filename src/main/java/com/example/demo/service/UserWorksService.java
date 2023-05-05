@@ -1,4 +1,4 @@
-package com.example.demo.db_impl;
+package com.example.demo.service;
 
 import com.example.demo.db.User;
 import java.sql.Connection;
@@ -6,9 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class UserWorksImpl {
+public class UserWorksService {
     Connection connection;
-    public UserWorksImpl(Connection connection) {
+    public UserWorksService(Connection connection) {
         this.connection = connection;
     }
     public User getUser(String email) {

@@ -6,6 +6,23 @@
 <html>
 <head>
     <title>Edit News</title>
+    <style>
+        body {
+            background-color: darkblue;
+            color: white;
+        }
+        label {
+            color: lightblue;
+        }
+        select, input, textarea {
+            background-color: lightblue;
+            color: darkblue;
+        }
+        .btn {
+            background-color: lightblue;
+            color: darkblue;
+        }
+    </style>
 </head>
 
 <body>
@@ -39,28 +56,28 @@
 
         <div class="row mt-3">
             <div class="col-12">
-                <label>Title:</label>
+                <label>Title: </label>
             </div>
         </div>
 
         <div class="row mt-2">
             <div class="col-12">
                 <label>
-                    <input type="text" class="form-control" name="title" value="<%= news.getTitle() %>" placeholder="Title...">
+                    <input type="text" class="form-control" name="title" value="<%= news.getTitle() %>">
                 </label>
             </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-12">
-                <label>Content:</label>
+                <label>Content: </label>
             </div>
         </div>
 
         <div class="row mt-2">
             <div class="col-12">
                 <label>
-                    <textarea type="text" class="form-control" name="content" placeholder="Content..." rows="5"><%= news.getContent() %></textarea>
+                    <textarea type="text" class="form-control" name="content" rows="5"><%= news.getContent() %></textarea>
                 </label>
             </div>
         </div>

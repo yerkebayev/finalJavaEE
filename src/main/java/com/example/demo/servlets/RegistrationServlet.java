@@ -2,7 +2,7 @@ package com.example.demo.servlets;
 
 import com.example.demo.db.DBConnection;
 import com.example.demo.db.User;
-import com.example.demo.db_impl.UserWorksImpl;
+import com.example.demo.service.UserWorksService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,15 +24,15 @@ public class RegistrationServlet extends HttpServlet {
         String password = request.getParameter("password");
         String fullName = request.getParameter("full_name");
         DBConnection dbConnection = new DBConnection();
-        UserWorksImpl userWorksImpl = new UserWorksImpl(dbConnection.getConnection());
-        User user = userWorksImpl.getUser(email);
+        UserWorksService userWorksService = new UserWorksService(dbConnection.getConnection());
+        User user = userWorksService.getUser(email);
         if(user == null){
                 User newUser = new User();
                 newUser.setEmail(email);
                 newUser.setFullname(fullName);
                 newUser.setPassword(password);
                 newUser.setRole_id(2);
-                userWorksImpl.addUser(newUser);
+                userWorksService.addUser(newUser);
                 response.sendRedirect("/register?cool");
         }else{
             response.sendRedirect("/register?Error");

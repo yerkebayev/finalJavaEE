@@ -73,7 +73,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <button style="background-color: #b20b38" class="btn text-warning">Register</button>
+                            <button style="background-color: blue" class="btn text-warning">Register</button>
                         </div>
                     </div>
                 </form>

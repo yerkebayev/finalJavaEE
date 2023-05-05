@@ -34,7 +34,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-12">
-                            <button class="btn text-warning" style="background-color: #b20b38">LOGIN</button>
+                            <button class="btn text-warning" style="background-color: blue">LOGIN</button>
                         </div>
                     </div>
                 </form>

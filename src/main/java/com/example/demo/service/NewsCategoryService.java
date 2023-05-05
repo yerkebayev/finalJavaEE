@@ -1,4 +1,4 @@
-package com.example.demo.db_impl;
+package com.example.demo.service;
 
 import com.example.demo.db.NewsCategory;
 import java.sql.Connection;
@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsCategoryImpl {
+public class NewsCategoryService {
     Connection connection;
-    public NewsCategoryImpl(Connection connection) {
+    public NewsCategoryService(Connection connection) {
         this.connection = connection;
     }
     public NewsCategory getCategory(int id) {

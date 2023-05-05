@@ -3,7 +3,7 @@ package com.example.demo.servlets;
 import com.example.demo.db.DBConnection;
 import com.example.demo.db.News;
 import com.example.demo.db.User;
-import com.example.demo.db_impl.NewsWorksImpl;
+import com.example.demo.service.NewsWorksService;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +16,7 @@ public class AddNewsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User currentUser = (User) request.getSession().getAttribute("currentUser");
         DBConnection dbConnection = new DBConnection();
-        NewsWorksImpl newsWorksImpl = new NewsWorksImpl(dbConnection.getConnection());
+        NewsWorksService newsWorksService = new NewsWorksService(dbConnection.getConnection());
         if(currentUser!=null && currentUser.getRole_id().equals(1)) {
             int category_id = Integer.parseInt(request.getParameter("news_category_id"));
             String title = request.getParameter("news_title");
@@ -25,7 +25,7 @@ public class AddNewsServlet extends HttpServlet {
             news.setTitle(title);
             news.setContent(content);
             news.setNewsCategory(category_id);
-            newsWorksImpl.addNews(news);
+            newsWorksService.addNews(news);
         }
         response.sendRedirect("/home");
     }

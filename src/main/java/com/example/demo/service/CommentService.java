@@ -1,4 +1,4 @@
-package com.example.demo.db_impl;
+package com.example.demo.service;
 
 import com.example.demo.db.Comment;
 import java.sql.Connection;
@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommentImpl {
+public class CommentService {
     Connection connection;
 
-    public CommentImpl(Connection connection) {
+    public CommentService(Connection connection) {
         this.connection = connection;
     }
 

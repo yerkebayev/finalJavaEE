@@ -1,4 +1,4 @@
-package com.example.demo.db_impl;
+package com.example.demo.service;
 
 import com.example.demo.db.News;
 import java.sql.Connection;
@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsWorksImpl {
+public class NewsWorksService {
     Connection connection;
-    public NewsWorksImpl(Connection connection) {
+    public NewsWorksService(Connection connection) {
         this.connection = connection;
     }
     public void addNews(News news) {

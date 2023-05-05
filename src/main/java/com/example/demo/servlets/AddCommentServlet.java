@@ -3,7 +3,7 @@ package com.example.demo.servlets;
 import com.example.demo.db.Comment;
 import com.example.demo.db.DBConnection;
 import com.example.demo.db.User;
-import com.example.demo.db_impl.CommentImpl;
+import com.example.demo.service.CommentService;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +17,7 @@ public class AddCommentServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("currentUser");
         DBConnection dbConnection = new DBConnection();
-        CommentImpl commentImpl = new CommentImpl(dbConnection.getConnection());
+        CommentService commentService = new CommentService(dbConnection.getConnection());
         if(user != null){
             String commentText = request.getParameter("comment");
             Long newsId = Long.parseLong(request.getParameter("news_id"));
@@ -25,7 +25,7 @@ public class AddCommentServlet extends HttpServlet {
             comment.setComment(commentText);
             comment.setUser_id(user.getId());
             comment.setNews_id(newsId);
-            commentImpl.addComment(comment);
+            commentService.addComment(comment);
             response.sendRedirect("/details?news_id="+newsId);
         }else{
             response.sendRedirect("/login");

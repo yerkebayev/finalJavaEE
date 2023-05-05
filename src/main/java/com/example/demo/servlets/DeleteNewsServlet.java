@@ -2,7 +2,7 @@ package com.example.demo.servlets;
 
 import com.example.demo.db.DBConnection;
 import com.example.demo.db.User;
-import com.example.demo.db_impl.NewsWorksImpl;
+import com.example.demo.service.NewsWorksService;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,7 @@ public class DeleteNewsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         DBConnection dbConnection = new DBConnection();
-        NewsWorksImpl newsWorksImpl = new NewsWorksImpl(dbConnection.getConnection());
+        NewsWorksService newsWorksService = new NewsWorksService(dbConnection.getConnection());
         long id;
         try {
             id = Long.parseLong(request.getParameter("news_id"));
@@ -23,7 +23,7 @@ public class DeleteNewsServlet extends HttpServlet {
         }
         User currentUser = (User)request.getSession().getAttribute("currentUser");
         if(currentUser!=null && currentUser.getRole_id().equals(1)) {
-            newsWorksImpl.removeNews(id);
+            newsWorksService.removeNews(id);
         }
         response.sendRedirect("/");
     }

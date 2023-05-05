@@ -4,9 +4,9 @@ import com.example.demo.db.Comment;
 import com.example.demo.db.DBConnection;
 import com.example.demo.db.News;
 import com.example.demo.db.NewsCategory;
-import com.example.demo.db_impl.CommentImpl;
-import com.example.demo.db_impl.NewsCategoryImpl;
-import com.example.demo.db_impl.NewsWorksImpl;
+import com.example.demo.service.CommentService;
+import com.example.demo.service.NewsCategoryService;
+import com.example.demo.service.NewsWorksService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,20 +21,20 @@ public class DetailsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DBConnection dbConnection = new DBConnection();
-        NewsWorksImpl newsWorksImpl = new NewsWorksImpl(dbConnection.getConnection());
-        NewsCategoryImpl newsCategoryImpl = new NewsCategoryImpl(dbConnection.getConnection());
-        CommentImpl commentImpl = new CommentImpl(dbConnection.getConnection());
+        NewsWorksService newsWorksService = new NewsWorksService(dbConnection.getConnection());
+        NewsCategoryService newsCategoryService = new NewsCategoryService(dbConnection.getConnection());
+        CommentService commentService = new CommentService(dbConnection.getConnection());
         long id;
         try {
             id = Long.parseLong(request.getParameter("news_id"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        News news = newsWorksImpl.getNews(id);
+        News news = newsWorksService.getNews(id);
         request.setAttribute("foundNews",news);
-        List<NewsCategory> categories = newsCategoryImpl.getCategories();
+        List<NewsCategory> categories = newsCategoryService.getCategories();
         request.setAttribute("categories",categories);
-        List<Comment> comments = commentImpl.getComments(id);
+        List<Comment> comments = commentService.getComments(id);
         request.setAttribute("comments",comments);
         request.getRequestDispatcher("/details.jsp").forward(request,response);
     }

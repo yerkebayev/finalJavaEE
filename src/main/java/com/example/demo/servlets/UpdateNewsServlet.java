@@ -4,8 +4,8 @@ import com.example.demo.db.DBConnection;
 import com.example.demo.db.News;
 import com.example.demo.db.NewsCategory;
 import com.example.demo.db.User;
-import com.example.demo.db_impl.NewsCategoryImpl;
-import com.example.demo.db_impl.NewsWorksImpl;
+import com.example.demo.service.NewsCategoryService;
+import com.example.demo.service.NewsWorksService;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,20 +19,20 @@ public class UpdateNewsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User currentUser = (User)request.getSession().getAttribute("currentUser");
         DBConnection dbConnection = new DBConnection();
-        NewsWorksImpl newsWorksImpl = new NewsWorksImpl(dbConnection.getConnection());
-        NewsCategoryImpl newsCategoryImpl = new NewsCategoryImpl(dbConnection.getConnection());
+        NewsWorksService newsWorksService = new NewsWorksService(dbConnection.getConnection());
+        NewsCategoryService newsCategoryService = new NewsCategoryService(dbConnection.getConnection());
         if(currentUser!=null && currentUser.getRole_id().equals(1)) {
             Long news_id = Long.parseLong(request.getParameter("id"));
             int category_id = Integer.parseInt(request.getParameter("category_id"));
             String title = request.getParameter("title");
             String content = request.getParameter("content");
-            News news = newsWorksImpl.getNews(news_id);
-            NewsCategory newsCategory = newsCategoryImpl.getCategory(category_id);
+            News news = newsWorksService.getNews(news_id);
+            NewsCategory newsCategory = newsCategoryService.getCategory(category_id);
             if (news != null && newsCategory != null) {
                 news.setTitle(title);
                 news.setContent(content);
                 news.setNewsCategory(category_id);
-                newsWorksImpl.updateNews(news);
+                newsWorksService.updateNews(news);
                 response.sendRedirect("/details?news_id=" + news_id);
             } else {
                 response.sendRedirect("/");
