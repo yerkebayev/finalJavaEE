@@ -17,10 +17,10 @@ public class AddNewsServlet extends HttpServlet {
         User currentUser = (User) request.getSession().getAttribute("currentUser");
         DBConnection dbConnection = new DBConnection();
         NewsWorksService newsWorksService = new NewsWorksService(dbConnection.getConnection());
-        if(currentUser!=null && currentUser.getRole_id().equals(1)) {
-            int category_id = Integer.parseInt(request.getParameter("news_category_id"));
+        if(currentUser != null && currentUser.getRole_id() == 1) {
             String title = request.getParameter("news_title");
             String content = request.getParameter("news_content");
+            int category_id = Integer.parseInt(request.getParameter("news_category_id"));
             News news = new News();
             news.setTitle(title);
             news.setContent(content);

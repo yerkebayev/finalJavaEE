@@ -31,7 +31,7 @@ public class DetailsServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
         News news = newsWorksService.getNews(id);
-        request.setAttribute("foundNews",news);
+        request.setAttribute("news",news);
         List<NewsCategory> categories = newsCategoryService.getCategories();
         request.setAttribute("categories",categories);
         List<Comment> comments = commentService.getComments(id);

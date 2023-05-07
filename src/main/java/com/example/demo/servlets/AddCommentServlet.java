@@ -4,7 +4,6 @@ import com.example.demo.db.Comment;
 import com.example.demo.db.DBConnection;
 import com.example.demo.db.User;
 import com.example.demo.service.CommentService;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,7 @@ import java.io.IOException;
 @WebServlet(value="/add-comment")
 public class AddCommentServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("currentUser");
         DBConnection dbConnection = new DBConnection();
         CommentService commentService = new CommentService(dbConnection.getConnection());
@@ -26,7 +25,7 @@ public class AddCommentServlet extends HttpServlet {
             comment.setUser_id(user.getId());
             comment.setNews_id(newsId);
             commentService.addComment(comment);
-            response.sendRedirect("/details?news_id="+newsId);
+            response.sendRedirect("/details?news_id=" + newsId);
         }else{
             response.sendRedirect("/login");
         }

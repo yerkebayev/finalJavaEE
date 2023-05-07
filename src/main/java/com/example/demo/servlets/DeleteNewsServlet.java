@@ -22,7 +22,7 @@ public class DeleteNewsServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
         User currentUser = (User)request.getSession().getAttribute("currentUser");
-        if(currentUser!=null && currentUser.getRole_id().equals(1)) {
+        if(currentUser != null && currentUser.getRole_id() == 1) {
             newsWorksService.removeNews(id);
         }
         response.sendRedirect("/");

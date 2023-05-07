@@ -25,6 +25,20 @@ public class UserWorksService {
         }
         return user;
     }
+    public User getUserById(long id) {
+        User user = null;
+        try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM users WHERE id = ?")) {
+            statement.setLong(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User(resultSet.getLong("id"), resultSet.getString("email"),resultSet.getString("password"),resultSet.getString("full_name"), resultSet.getInt("role_id"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
 
     public void addUser(User user) {
         try (PreparedStatement insertStatement = connection.prepareStatement("INSERT INTO users(email,password,full_name,role_id) VALUES (?,?,?,?)")) {
